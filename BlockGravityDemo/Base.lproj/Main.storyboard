@@ -29,13 +29,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kqZ-7e-O7u" secondAttribute="trailing" constant="8" id="OiL-Dd-Vsr"/>
                             <constraint firstItem="kqZ-7e-O7u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="vO9-k3-hch"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="NrZ-V5-leA" appends="YES" id="bWV-tj-cSI"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NrZ-V5-leA">
+                    <connections>
+                        <action selector="fire:" destination="BYZ-38-t0r" id="Xwj-5g-0cK"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>

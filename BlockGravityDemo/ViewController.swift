@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var animator: UIDynamicAnimator!
     var gravity: UIGravityBehavior!
     var collision: UICollisionBehavior!
+    var push: UIPushBehavior!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,10 @@ class ViewController: UIViewController {
         collision = UICollisionBehavior(items: [imgView])
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
+        
+        push = UIPushBehavior(items: [], mode: .continuous)
+        push.pushDirection = CGVector(dx: 0, dy: -1)
+        animator.addBehavior(push)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +44,16 @@ class ViewController: UIViewController {
     @IBAction func btnReplay(_ sender: UIButton) {
         view.subviews.forEach { $0.removeFromSuperview() }
         viewDidLoad()
+    }
+    
+    @IBAction func fire(_ sender: UITapGestureRecognizer) {
+        let rocketView = UIImageView(image: UIImage(named: "rocket"))
+        let location = sender.location(in: view)
+        rocketView.frame.origin.x = location.x
+        rocketView.frame.origin.y = location.y
+        view.addSubview(rocketView)
+        
+        push.addItem(rocketView)
     }
 
 }

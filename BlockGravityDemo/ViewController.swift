@@ -17,15 +17,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let square = UIView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-        square.backgroundColor = UIColor.blue
-        view.addSubview(square)
+        let img: UIImage = UIImage(named: "spaceship")!
+        let imgView = UIImageView(image: img)
+        view.addSubview(imgView)
         
         animator = UIDynamicAnimator(referenceView: view)
-        gravity = UIGravityBehavior(items: [square])
+        gravity = UIGravityBehavior(items: [imgView])
         animator.addBehavior(gravity)
         
-        collision = UICollisionBehavior(items: [square])
+        collision = UICollisionBehavior(items: [imgView])
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
     }
@@ -36,6 +36,10 @@ class ViewController: UIViewController {
         
     }
 
+    @IBAction func btnReplay(_ sender: UIButton) {
+        view.subviews.forEach { $0.removeFromSuperview() }
+        viewDidLoad()
+    }
 
 }
 
